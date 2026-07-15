@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Clock Tower</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Nunito+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* Fuente de la carta física. Sube el archivo "AccidentalPresidency.ttf" a la
+       raíz del repositorio y se activará sola (mientras tanto se usa Oswald de respaldo). */
+    @font-face {
+      font-family: 'Accidental Presidency';
+      src: url('AccidentalPresidency.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #0B0B0B;
+      --black2:   #1A1A1A;
+      --black3:   #232323;
+      --white:    #FFFFFF;
+      --orange:   #F39200;
+      --orange-lt:#FFAE33;
+      --card-bg:  rgba(255,255,255,0.04);
+      --shadow:   0 2px 14px rgba(0,0,0,0.55);
+    }
+
+    body {
+      background-color: var(--black);
+      font-family: 'Nunito Sans', Arial, sans-serif;
+      min-height: 100vh;
+      color: var(--white);
+    }
+
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 14px 24px 0;
+    }
+    .lang-btn {
+      background: none;
+      border: 1.5px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 4px 8px;
+      font-size: 24px;
+      line-height: 1;
+      transition: border-color 0.2s, transform 0.15s;
+      opacity: 0.55;
+    }
+    .lang-btn:hover { opacity: 0.9; transform: scale(1.08); }
+    .lang-btn.active {
+      border-color: var(--orange);
+      opacity: 1;
+      box-shadow: 0 0 0 2px rgba(243,146,0,0.25);
+    }
+
+    /* ── WRAPPER ── */
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ── HEADER / LOGO ── */
+    .header {
+      text-align: center;
+      padding: 28px 0 10px;
+    }
+    .brand-title {
+      font-family: 'Accidental Presidency', 'Oswald', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .brand-title span { color: var(--orange); }
+    .brand-sub {
+      font-family: 'Nunito Sans', sans-serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--orange-lt);
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+    }
+    .logo-img {
+      width: 240px;
+      margin: 0 auto 8px;
+      display: block;
+    }
+    .logo-placeholder {
+      width: 240px;
+      height: 140px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed rgba(243,146,0,0.4);
+      border-radius: 12px;
+      background: var(--card-bg);
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px 0 18px;
+      font-family: 'Accidental Presidency', 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      color: var(--white);
+      opacity: 0.75;
+      text-transform: uppercase;
+    }
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--orange), transparent);
+      opacity: 0.6;
+    }
+
+    /* ── MENU CARDS ── */
+    .menu-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .menu-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--card-bg);
+      border: 1px solid rgba(243,146,0,0.22);
+      border-radius: 10px;
+      padding: 18px 20px;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: var(--shadow);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(243,146,0,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .menu-card:hover {
+      background: rgba(243,146,0,0.08);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+      transform: translateY(-1px);
+    }
+    .menu-card:active { transform: translateY(0); }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--black3);
+      border: 1px solid rgba(243,146,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .card-text { flex: 1; }
+    .card-name {
+      font-family: 'Accidental Presidency', 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .card-sub {
+      font-family: 'Accidental Presidency', 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      font-weight: 600;
+      margin-top: 3px;
+      text-transform: uppercase;
+    }
+    .card-arrow {
+      color: var(--orange);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(243,146,0,0.3);
+    }
+    .footer-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      transform: rotate(45deg);
+      margin-bottom: 8px;
+    }
+    .footer-text {
+      font-family: 'Accidental Presidency', 'Oswald', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      color: var(--white);
+      opacity: 0.55;
+      text-transform: uppercase;
+    }
+
+    /* ── OVERLAY / CARTA PAGE ── */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 100;
+      overflow-y: auto;
+    }
+    .overlay.open { display: block; }
+
+    .overlay-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px 24px 60px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--orange);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Accidental Presidency', 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--black);
+      font-weight: 700;
+      padding: 10px 18px;
+      margin-bottom: 24px;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 2px 8px rgba(243,146,0,0.35);
+      text-transform: uppercase;
+    }
+    .back-btn:hover { background: var(--orange-lt); transform: translateY(-1px); }
+
+    .carta-title {
+      font-family: 'Accidental Presidency', 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .carta-subtitle {
+      font-family: 'Accidental Presidency', 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--orange-lt);
+      text-align: center;
+      letter-spacing: 0.06em;
+      margin-top: 24px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .carta-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--orange);
+      margin: 14px auto 28px;
+      opacity: 0.6;
+    }
+    .carta-divider.small {
+      margin: 8px auto 18px;
+      width: 40px;
+      opacity: 0.4;
+    }
+
+    /* image + placeholder */
+    .img-wrap { margin-bottom: 10px; }
+    .img-wrap img { width: 100%; border-radius: 12px; display: block; }
+    .img-placeholder {
+      display: none;
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--card-bg);
+      border: 2px dashed rgba(243,146,0,0.4);
+      border-radius: 12px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--white);
+      opacity: 0.75;
+    }
+    .placeholder-icon { font-size: 2.5rem; }
+    .placeholder-label {
+      font-family: 'Accidental Presidency', 'Oswald', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-align: center;
+      line-height: 1.7;
+      text-transform: uppercase;
+    }
+    .ph-filename {
+      color: var(--orange-lt);
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- LANGUAGE BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" id="btn-es" onclick="setLang('es')" title="Español" aria-label="Español">🇪🇸</button>
+  <button class="lang-btn"        id="btn-en" onclick="setLang('en')" title="English"  aria-label="English" >🇬🇧</button>
+</div>
+
+<!-- MAIN PAGE -->
+<div class="page" id="home">
+
+  <!-- HEADER -->
+  <div class="header">
+    <img id="logo-img" class="logo-img" src="LogoClockTower.png" alt="The Clock Tower"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+    <div class="logo-placeholder" style="display:none;">
+      <div class="brand-title">THE CLOCK<br><span>TOWER</span></div>
+    </div>
+  </div>
+
+  <!-- SECTION LABEL -->
+  <div class="section-label">
+    <span id="section-label-text">NUESTRAS CARTAS</span>
+  </div>
+
+  <!-- MENU CARDS -->
+  <div class="menu-list">
+    <div class="menu-card" onclick="openCarta('comida')">
+      <div class="card-icon">🍽️</div>
+      <div class="card-text">
+        <div class="card-name" id="card-name-comida">Comida</div>
+        <div class="card-sub" id="card-sub-comida"></div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="menu-card" onclick="openCarta('spritzgrp')">
+      <div class="card-icon">🍹</div>
+      <div class="card-text">
+        <div class="card-name" id="card-name-spritzgrp">Spritz, Sangrías<br>y Mojitería</div>
+        <div class="card-sub" id="card-sub-spritzgrp"></div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="menu-card" onclick="openCarta('autorgrp')">
+      <div class="card-icon">🍸</div>
+      <div class="card-text">
+        <div class="card-name" id="card-name-autorgrp">Cócteles de Autor<br>y XXL</div>
+        <div class="card-sub" id="card-sub-autorgrp"></div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="menu-card" onclick="openCarta('tradicionales')">
+      <div class="card-icon">🥂</div>
+      <div class="card-text">
+        <div class="card-name" id="card-name-tradicionales">Cócteles<br>Tradicionales</div>
+        <div class="card-sub" id="card-sub-tradicionales"></div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="menu-card" onclick="openCarta('combinados')">
+      <div class="card-icon">🥃</div>
+      <div class="card-text">
+        <div class="card-name" id="card-name-combinados">Combinados</div>
+        <div class="card-sub" id="card-sub-combinados"></div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="menu-card" onclick="openCarta('bebidas')">
+      <div class="card-icon">🥤</div>
+      <div class="card-text">
+        <div class="card-name" id="card-name-bebidas">Bebidas</div>
+        <div class="card-sub" id="card-sub-bebidas"></div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="menu-card" onclick="openCarta('cero')">
+      <div class="card-icon">🍋</div>
+      <div class="card-text">
+        <div class="card-name" id="card-name-cero">Cócteles 0'0</div>
+        <div class="card-sub" id="card-sub-cero"></div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="menu-card" onclick="openCarta('cafes')">
+      <div class="card-icon">☕</div>
+      <div class="card-text">
+        <div class="card-name" id="card-name-cafes">Cafés</div>
+        <div class="card-sub" id="card-sub-cafes"></div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-dot"></div>
+    <p class="footer-text">THE CLOCK TOWER &middot; TORREMOLINOS</p>
+  </div>
+</div><!-- /page -->
+
+
+<!-- ═══════════════════════════════════════
+     CARTA OVERLAYS  (one per section)
+     ═══════════════════════════════════════ -->
+
+<!-- COMIDA -->
+<div class="overlay" id="overlay-comida">
+  <div class="overlay-inner">
+    <button class="back-btn" onclick="closeCarta('comida')">← <span class="back-label">VOLVER</span></button>
+    <h2 class="carta-title" id="ov-title-comida">Comida</h2>
+    <div class="carta-divider"></div>
+      
+      
+      <div class="img-wrap">
+        <img id="img-comida" src="ComidaEsp.jpg" alt="Comida"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-comida">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">ComidaEsp.jpg</span></div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- SPRITZGRP -->
+<div class="overlay" id="overlay-spritzgrp">
+  <div class="overlay-inner">
+    <button class="back-btn" onclick="closeCarta('spritzgrp')">← <span class="back-label">VOLVER</span></button>
+    <h2 class="carta-title" id="ov-title-spritzgrp">Spritz, Sangrías<br>y Mojitería</h2>
+    
+      <h3 class="carta-subtitle" id="ov-subtitle-spritz">Spritz</h3>
+      <div class="carta-divider"></div>
+      <div class="img-wrap">
+        <img id="img-spritz" src="SpritzEsp.jpg" alt="Spritz"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-spritz">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">SpritzEsp.jpg</span></div>
+        </div>
+      </div>
+
+      <h3 class="carta-subtitle" id="ov-subtitle-cafeteria">Cafetería y Sangrías</h3>
+      <div class="carta-divider small"></div>
+      <div class="img-wrap">
+        <img id="img-cafeteria" src="CafeteriaSangriasEsp.jpg" alt="Cafetería y Sangrías"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-cafeteria">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">CafeteriaSangriasEsp.jpg</span></div>
+        </div>
+      </div>
+
+      <h3 class="carta-subtitle" id="ov-subtitle-mojiteria">Mojitería</h3>
+      <div class="carta-divider small"></div>
+      <div class="img-wrap">
+        <img id="img-mojiteria" src="MojiteriaEsp.jpg" alt="Mojitería"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-mojiteria">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">MojiteriaEsp.jpg</span></div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- AUTORGRP -->
+<div class="overlay" id="overlay-autorgrp">
+  <div class="overlay-inner">
+    <button class="back-btn" onclick="closeCarta('autorgrp')">← <span class="back-label">VOLVER</span></button>
+    <h2 class="carta-title" id="ov-title-autorgrp">Cócteles de Autor<br>y XXL</h2>
+    
+      <h3 class="carta-subtitle" id="ov-subtitle-autor">Cócteles de Autor</h3>
+      <div class="carta-divider"></div>
+      <div class="img-wrap">
+        <img id="img-autor" src="CoctelesAutorEsp.jpg" alt="Cócteles de Autor"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-autor">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">CoctelesAutorEsp.jpg</span></div>
+        </div>
+      </div>
+
+      <h3 class="carta-subtitle" id="ov-subtitle-xxl">Cócteles XXL</h3>
+      <div class="carta-divider small"></div>
+      <div class="img-wrap">
+        <img id="img-xxl" src="CoctelesXXLEsp.jpg" alt="Cócteles XXL"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-xxl">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">CoctelesXXLEsp.jpg</span></div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- TRADICIONALES -->
+<div class="overlay" id="overlay-tradicionales">
+  <div class="overlay-inner">
+    <button class="back-btn" onclick="closeCarta('tradicionales')">← <span class="back-label">VOLVER</span></button>
+    <h2 class="carta-title" id="ov-title-tradicionales">Cócteles<br>Tradicionales</h2>
+    <div class="carta-divider"></div>
+      
+      
+      <div class="img-wrap">
+        <img id="img-tradicionales" src="CoctelesTradEsp.jpg" alt="Cócteles Tradicionales"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-tradicionales">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">CoctelesTradEsp.jpg</span></div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- COMBINADOS -->
+<div class="overlay" id="overlay-combinados">
+  <div class="overlay-inner">
+    <button class="back-btn" onclick="closeCarta('combinados')">← <span class="back-label">VOLVER</span></button>
+    <h2 class="carta-title" id="ov-title-combinados">Combinados</h2>
+    <div class="carta-divider"></div>
+      
+      
+      <div class="img-wrap">
+        <img id="img-combinados" src="CombinadosEsp.jpg" alt="Combinados"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-combinados">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">CombinadosEsp.jpg</span></div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- BEBIDAS -->
+<div class="overlay" id="overlay-bebidas">
+  <div class="overlay-inner">
+    <button class="back-btn" onclick="closeCarta('bebidas')">← <span class="back-label">VOLVER</span></button>
+    <h2 class="carta-title" id="ov-title-bebidas">Bebidas</h2>
+    <div class="carta-divider"></div>
+      
+      
+      <div class="img-wrap">
+        <img id="img-bebidas" src="BebidasEsp.jpg" alt="Bebidas"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-bebidas">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">BebidasEsp.jpg</span></div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- CERO -->
+<div class="overlay" id="overlay-cero">
+  <div class="overlay-inner">
+    <button class="back-btn" onclick="closeCarta('cero')">← <span class="back-label">VOLVER</span></button>
+    <h2 class="carta-title" id="ov-title-cero">Cócteles 0'0</h2>
+    <div class="carta-divider"></div>
+      
+      
+      <div class="img-wrap">
+        <img id="img-cero" src="Cocteles00Esp.jpg" alt="Cócteles 0'0"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-cero">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">Cocteles00Esp.jpg</span></div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- CAFES -->
+<div class="overlay" id="overlay-cafes">
+  <div class="overlay-inner">
+    <button class="back-btn" onclick="closeCarta('cafes')">← <span class="back-label">VOLVER</span></button>
+    <h2 class="carta-title" id="ov-title-cafes">Cafés</h2>
+    <div class="carta-divider"></div>
+      
+      
+      <div class="img-wrap">
+        <img id="img-cafes" src="CafesEsp.jpg" alt="Cafés"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-cafes">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">CafesEsp.jpg</span></div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<script>
+// ── TRANSLATIONS ─────────────────────────────────────────────────────────────
+const T = {
+  es: {
+    sectionLabel: "NUESTRAS CARTAS",
+    backLabel: "VOLVER",
+    "card-name-comida": "Comida", "card-sub-comida": "",
+    "ov-title-comida": "Comida",
+    "ov-subtitle-comida": "Comida",
+    "card-name-spritzgrp": "Spritz, Sangrías<br>y Mojitería", "card-sub-spritzgrp": "",
+    "ov-title-spritzgrp": "Spritz, Sangrías<br>y Mojitería",
+    "ov-subtitle-spritz": "Spritz",
+    "ov-subtitle-cafeteria": "Cafetería y Sangrías",
+    "ov-subtitle-mojiteria": "Mojitería",
+    "card-name-autorgrp": "Cócteles de Autor<br>y XXL", "card-sub-autorgrp": "",
+    "ov-title-autorgrp": "Cócteles de Autor<br>y XXL",
+    "ov-subtitle-autor": "Cócteles de Autor",
+    "ov-subtitle-xxl": "Cócteles XXL",
+    "card-name-tradicionales": "Cócteles<br>Tradicionales", "card-sub-tradicionales": "",
+    "ov-title-tradicionales": "Cócteles<br>Tradicionales",
+    "ov-subtitle-tradicionales": "Cócteles Tradicionales",
+    "card-name-combinados": "Combinados", "card-sub-combinados": "",
+    "ov-title-combinados": "Combinados",
+    "ov-subtitle-combinados": "Combinados",
+    "card-name-bebidas": "Bebidas", "card-sub-bebidas": "",
+    "ov-title-bebidas": "Bebidas",
+    "ov-subtitle-bebidas": "Bebidas",
+    "card-name-cero": "Cócteles 0'0", "card-sub-cero": "",
+    "ov-title-cero": "Cócteles 0'0",
+    "ov-subtitle-cero": "Cócteles 0'0",
+    "card-name-cafes": "Cafés", "card-sub-cafes": "",
+    "ov-title-cafes": "Cafés",
+    "ov-subtitle-cafes": "Cafés",
+  },
+  en: {
+    sectionLabel: "OUR MENUS",
+    backLabel: "BACK",
+    "card-name-comida": "", "card-sub-comida": "FOOD MENU",
+    "ov-title-comida": "Food",
+    "ov-subtitle-comida": "Food",
+    "card-name-spritzgrp": "", "card-sub-spritzgrp": "SPRITZ · SANGRIA · MOJITOS",
+    "ov-title-spritzgrp": "Spritz, Sangria & Mojitos",
+    "ov-subtitle-spritz": "Spritz",
+    "ov-subtitle-cafeteria": "Coffee & Sangria",
+    "ov-subtitle-mojiteria": "Mojito Bar",
+    "card-name-autorgrp": "", "card-sub-autorgrp": "SIGNATURE · XXL",
+    "ov-title-autorgrp": "Signature & XXL Cocktails",
+    "ov-subtitle-autor": "Signature Cocktails",
+    "ov-subtitle-xxl": "XXL Cocktails",
+    "card-name-tradicionales": "", "card-sub-tradicionales": "CLASSIC COCKTAILS",
+    "ov-title-tradicionales": "Classic Cocktails",
+    "ov-subtitle-tradicionales": "Classic Cocktails",
+    "card-name-combinados": "", "card-sub-combinados": "SPIRITS",
+    "ov-title-combinados": "Combinados",
+    "ov-subtitle-combinados": "Combinados",
+    "card-name-bebidas": "", "card-sub-bebidas": "DRINKS",
+    "ov-title-bebidas": "Drinks",
+    "ov-subtitle-bebidas": "Drinks",
+    "card-name-cero": "", "card-sub-cero": "ALCOHOL FREE",
+    "ov-title-cero": "0.0 Cocktails",
+    "ov-subtitle-cero": "0.0 Cocktails",
+    "card-name-cafes": "", "card-sub-cafes": "COFFEE",
+    "ov-title-cafes": "Coffee",
+    "ov-subtitle-cafes": "Coffee",
+  }
+};
+
+let currentLang = 'es';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+  const t = T[lang];
+  document.getElementById('section-label-text').textContent = t.sectionLabel;
+
+  document.querySelectorAll('.back-label').forEach(el => el.textContent = t.backLabel);
+
+  Object.keys(t).forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = t[id];
+  });
+
+  // switch images based on language
+  const imgs = {
+    'comida': lang === 'es' ? 'ComidaEsp.jpg' : 'ComidaIng.jpg',
+    'spritz': lang === 'es' ? 'SpritzEsp.jpg' : 'SpritzIng.jpg',
+    'cafeteria': lang === 'es' ? 'CafeteriaSangriasEsp.jpg' : 'CafeteriaSangriasIng.jpg',
+    'mojiteria': lang === 'es' ? 'MojiteriaEsp.jpg' : 'MojiteriaIng.jpg',
+    'autor': lang === 'es' ? 'CoctelesAutorEsp.jpg' : 'CoctelesAutorIng.jpg',
+    'xxl': lang === 'es' ? 'CoctelesXXLEsp.jpg' : 'CoctelesXXLIng.jpg',
+    'tradicionales': lang === 'es' ? 'CoctelesTradEsp.jpg' : 'CoctelesTradIng.jpg',
+    'combinados': lang === 'es' ? 'CombinadosEsp.jpg' : 'CombinadosIng.jpg',
+    'bebidas': lang === 'es' ? 'BebidasEsp.jpg' : 'BebidasIng.jpg',
+    'cero': lang === 'es' ? 'Cocteles00Esp.jpg' : 'Cocteles00Ing.jpg',
+    'cafes': lang === 'es' ? 'CafesEsp.jpg' : 'CafesIng.jpg',
+  };
+  Object.keys(imgs).forEach(id => {
+    const el = document.getElementById('img-' + id);
+    if (el) {
+      el.style.display = '';
+      const ph = document.getElementById('ph-' + id);
+      if (ph) ph.style.display = 'none';
+      el.src = imgs[id];
+    }
+  });
+}
+
+function openCarta(name) {
+  document.getElementById('overlay-' + name).classList.add('open');
+  document.body.style.overflow = 'hidden';
+  window.scrollTo(0,0);
+}
+function closeCarta(name) {
+  document.getElementById('overlay-' + name).classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>
