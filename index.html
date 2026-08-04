@@ -363,10 +363,19 @@
       <div class="card-arrow">→</div>
     </div>
 
+    <div class="menu-card" onclick="openCarta('bebidasfrias')">
+      <div class="card-icon">🥤</div>
+      <div class="card-text">
+        <div class="card-name" id="card-name-bebidasfrias">Bebidas Frías</div>
+        <div class="card-sub" id="card-sub-bebidasfrias"></div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
     <div class="menu-card" onclick="openCarta('spritzgrp')">
       <div class="card-icon">🍹</div>
       <div class="card-text">
-        <div class="card-name" id="card-name-spritzgrp">Spritz, Sangrías<br>y Mojitería</div>
+        <div class="card-name" id="card-name-spritzgrp">Spritz, Cafelería<br>y Sangrías, Mojitería</div>
         <div class="card-sub" id="card-sub-spritzgrp"></div>
       </div>
       <div class="card-arrow">→</div>
@@ -390,38 +399,20 @@
       <div class="card-arrow">→</div>
     </div>
 
+    <div class="menu-card" onclick="openCarta('cerogrp')">
+      <div class="card-icon">☕</div>
+      <div class="card-text">
+        <div class="card-name" id="card-name-cerogrp">Cócteles 0'0<br>y Bebidas Calientes</div>
+        <div class="card-sub" id="card-sub-cerogrp"></div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
     <div class="menu-card" onclick="openCarta('combinados')">
       <div class="card-icon">🥃</div>
       <div class="card-text">
         <div class="card-name" id="card-name-combinados">Combinados</div>
         <div class="card-sub" id="card-sub-combinados"></div>
-      </div>
-      <div class="card-arrow">→</div>
-    </div>
-
-    <div class="menu-card" onclick="openCarta('bebidas')">
-      <div class="card-icon">🥤</div>
-      <div class="card-text">
-        <div class="card-name" id="card-name-bebidas">Bebidas</div>
-        <div class="card-sub" id="card-sub-bebidas"></div>
-      </div>
-      <div class="card-arrow">→</div>
-    </div>
-
-    <div class="menu-card" onclick="openCarta('cero')">
-      <div class="card-icon">🍋</div>
-      <div class="card-text">
-        <div class="card-name" id="card-name-cero">Cócteles 0'0</div>
-        <div class="card-sub" id="card-sub-cero"></div>
-      </div>
-      <div class="card-arrow">→</div>
-    </div>
-
-    <div class="menu-card" onclick="openCarta('cafes')">
-      <div class="card-icon">☕</div>
-      <div class="card-text">
-        <div class="card-name" id="card-name-cafes">Cafés</div>
-        <div class="card-sub" id="card-sub-cafes"></div>
       </div>
       <div class="card-arrow">→</div>
     </div>
@@ -458,42 +449,39 @@
   </div>
 </div>
 
+<!-- BEBIDASFRIAS -->
+<div class="overlay" id="overlay-bebidasfrias">
+  <div class="overlay-inner">
+    <button class="back-btn" onclick="closeCarta('bebidasfrias')">← <span class="back-label">VOLVER</span></button>
+    <h2 class="carta-title" id="ov-title-bebidasfrias">Bebidas Frías</h2>
+    <div class="carta-divider"></div>
+      
+      
+      <div class="img-wrap">
+        <img id="img-bebidasfrias" src="BebidasFriasEsp.jpg" alt="Bebidas Frías"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-bebidasfrias">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">BebidasFriasEsp.jpg</span></div>
+        </div>
+      </div>
+  </div>
+</div>
+
 <!-- SPRITZGRP -->
 <div class="overlay" id="overlay-spritzgrp">
   <div class="overlay-inner">
     <button class="back-btn" onclick="closeCarta('spritzgrp')">← <span class="back-label">VOLVER</span></button>
-    <h2 class="carta-title" id="ov-title-spritzgrp">Spritz, Sangrías<br>y Mojitería</h2>
-    
-      <h3 class="carta-subtitle" id="ov-subtitle-spritz">Spritz</h3>
-      <div class="carta-divider"></div>
+    <h2 class="carta-title" id="ov-title-spritzgrp">Spritz, Cafelería<br>y Sangrías, Mojitería</h2>
+    <div class="carta-divider"></div>
+      
+      
       <div class="img-wrap">
-        <img id="img-spritz" src="SpritzEsp.jpg" alt="Spritz"
+        <img id="img-spritzgrp" src="SpritzCafeleriaMojiteriaEsp.jpg" alt="Spritz, Cafelería y Sangrías, Mojitería"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="img-placeholder" id="ph-spritz">
+        <div class="img-placeholder" id="ph-spritzgrp">
           <div class="placeholder-icon">📋</div>
-          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">SpritzEsp.jpg</span></div>
-        </div>
-      </div>
-
-      <h3 class="carta-subtitle" id="ov-subtitle-cafeteria">Cafetería y Sangrías</h3>
-      <div class="carta-divider small"></div>
-      <div class="img-wrap">
-        <img id="img-cafeteria" src="CafeteriaSangriasEsp.jpg" alt="Cafetería y Sangrías"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="img-placeholder" id="ph-cafeteria">
-          <div class="placeholder-icon">📋</div>
-          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">CafeteriaSangriasEsp.jpg</span></div>
-        </div>
-      </div>
-
-      <h3 class="carta-subtitle" id="ov-subtitle-mojiteria">Mojitería</h3>
-      <div class="carta-divider small"></div>
-      <div class="img-wrap">
-        <img id="img-mojiteria" src="MojiteriaEsp.jpg" alt="Mojitería"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="img-placeholder" id="ph-mojiteria">
-          <div class="placeholder-icon">📋</div>
-          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">MojiteriaEsp.jpg</span></div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">SpritzCafeleriaMojiteriaEsp.jpg</span></div>
         </div>
       </div>
   </div>
@@ -504,26 +492,15 @@
   <div class="overlay-inner">
     <button class="back-btn" onclick="closeCarta('autorgrp')">← <span class="back-label">VOLVER</span></button>
     <h2 class="carta-title" id="ov-title-autorgrp">Cócteles de Autor<br>y XXL</h2>
-    
-      <h3 class="carta-subtitle" id="ov-subtitle-autor">Cócteles de Autor</h3>
-      <div class="carta-divider"></div>
+    <div class="carta-divider"></div>
+      
+      
       <div class="img-wrap">
-        <img id="img-autor" src="CoctelesAutorEsp.jpg" alt="Cócteles de Autor"
+        <img id="img-autorgrp" src="CoctelesAutorXXLEsp.jpg" alt="Cócteles de Autor y XXL"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="img-placeholder" id="ph-autor">
+        <div class="img-placeholder" id="ph-autorgrp">
           <div class="placeholder-icon">📋</div>
-          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">CoctelesAutorEsp.jpg</span></div>
-        </div>
-      </div>
-
-      <h3 class="carta-subtitle" id="ov-subtitle-xxl">Cócteles XXL</h3>
-      <div class="carta-divider small"></div>
-      <div class="img-wrap">
-        <img id="img-xxl" src="CoctelesXXLEsp.jpg" alt="Cócteles XXL"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="img-placeholder" id="ph-xxl">
-          <div class="placeholder-icon">📋</div>
-          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">CoctelesXXLEsp.jpg</span></div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">CoctelesAutorXXLEsp.jpg</span></div>
         </div>
       </div>
   </div>
@@ -548,6 +525,25 @@
   </div>
 </div>
 
+<!-- CEROGRP -->
+<div class="overlay" id="overlay-cerogrp">
+  <div class="overlay-inner">
+    <button class="back-btn" onclick="closeCarta('cerogrp')">← <span class="back-label">VOLVER</span></button>
+    <h2 class="carta-title" id="ov-title-cerogrp">Cócteles 0'0<br>y Bebidas Calientes</h2>
+    <div class="carta-divider"></div>
+      
+      
+      <div class="img-wrap">
+        <img id="img-cerogrp" src="Cocteles00CalientesEsp.jpg" alt="Cócteles 0'0 y Bebidas Calientes"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="img-placeholder" id="ph-cerogrp">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">Cocteles00CalientesEsp.jpg</span></div>
+        </div>
+      </div>
+  </div>
+</div>
+
 <!-- COMBINADOS -->
 <div class="overlay" id="overlay-combinados">
   <div class="overlay-inner">
@@ -567,63 +563,6 @@
   </div>
 </div>
 
-<!-- BEBIDAS -->
-<div class="overlay" id="overlay-bebidas">
-  <div class="overlay-inner">
-    <button class="back-btn" onclick="closeCarta('bebidas')">← <span class="back-label">VOLVER</span></button>
-    <h2 class="carta-title" id="ov-title-bebidas">Bebidas</h2>
-    <div class="carta-divider"></div>
-      
-      
-      <div class="img-wrap">
-        <img id="img-bebidas" src="BebidasEsp.jpg" alt="Bebidas"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="img-placeholder" id="ph-bebidas">
-          <div class="placeholder-icon">📋</div>
-          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">BebidasEsp.jpg</span></div>
-        </div>
-      </div>
-  </div>
-</div>
-
-<!-- CERO -->
-<div class="overlay" id="overlay-cero">
-  <div class="overlay-inner">
-    <button class="back-btn" onclick="closeCarta('cero')">← <span class="back-label">VOLVER</span></button>
-    <h2 class="carta-title" id="ov-title-cero">Cócteles 0'0</h2>
-    <div class="carta-divider"></div>
-      
-      
-      <div class="img-wrap">
-        <img id="img-cero" src="Cocteles00Esp.jpg" alt="Cócteles 0'0"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="img-placeholder" id="ph-cero">
-          <div class="placeholder-icon">📋</div>
-          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">Cocteles00Esp.jpg</span></div>
-        </div>
-      </div>
-  </div>
-</div>
-
-<!-- CAFES -->
-<div class="overlay" id="overlay-cafes">
-  <div class="overlay-inner">
-    <button class="back-btn" onclick="closeCarta('cafes')">← <span class="back-label">VOLVER</span></button>
-    <h2 class="carta-title" id="ov-title-cafes">Cafés</h2>
-    <div class="carta-divider"></div>
-      
-      
-      <div class="img-wrap">
-        <img id="img-cafes" src="CafesEsp.jpg" alt="Cafés"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="img-placeholder" id="ph-cafes">
-          <div class="placeholder-icon">📋</div>
-          <div class="placeholder-label">IMAGEN DE LA CARTA<br>AÑADIR EN GITHUB<br><span class="ph-filename">CafesEsp.jpg</span></div>
-        </div>
-      </div>
-  </div>
-</div>
-
 
 <script>
 // ── TRANSLATIONS ─────────────────────────────────────────────────────────────
@@ -634,30 +573,24 @@ const T = {
     "card-name-comida": "Comida", "card-sub-comida": "",
     "ov-title-comida": "Comida",
     "ov-subtitle-comida": "Comida",
-    "card-name-spritzgrp": "Spritz, Sangrías<br>y Mojitería", "card-sub-spritzgrp": "",
-    "ov-title-spritzgrp": "Spritz, Sangrías<br>y Mojitería",
-    "ov-subtitle-spritz": "Spritz",
-    "ov-subtitle-cafeteria": "Cafetería y Sangrías",
-    "ov-subtitle-mojiteria": "Mojitería",
+    "card-name-bebidasfrias": "Bebidas Frías", "card-sub-bebidasfrias": "",
+    "ov-title-bebidasfrias": "Bebidas Frías",
+    "ov-subtitle-bebidasfrias": "Bebidas Frías",
+    "card-name-spritzgrp": "Spritz, Cafelería<br>y Sangrías, Mojitería", "card-sub-spritzgrp": "",
+    "ov-title-spritzgrp": "Spritz, Cafelería<br>y Sangrías, Mojitería",
+    "ov-subtitle-spritzgrp": "Spritz, Cafelería y Sangrías, Mojitería",
     "card-name-autorgrp": "Cócteles de Autor<br>y XXL", "card-sub-autorgrp": "",
     "ov-title-autorgrp": "Cócteles de Autor<br>y XXL",
-    "ov-subtitle-autor": "Cócteles de Autor",
-    "ov-subtitle-xxl": "Cócteles XXL",
+    "ov-subtitle-autorgrp": "Cócteles de Autor y XXL",
     "card-name-tradicionales": "Cócteles<br>Tradicionales", "card-sub-tradicionales": "",
     "ov-title-tradicionales": "Cócteles<br>Tradicionales",
     "ov-subtitle-tradicionales": "Cócteles Tradicionales",
+    "card-name-cerogrp": "Cócteles 0'0<br>y Bebidas Calientes", "card-sub-cerogrp": "",
+    "ov-title-cerogrp": "Cócteles 0'0<br>y Bebidas Calientes",
+    "ov-subtitle-cerogrp": "Cócteles 0'0 y Bebidas Calientes",
     "card-name-combinados": "Combinados", "card-sub-combinados": "",
     "ov-title-combinados": "Combinados",
     "ov-subtitle-combinados": "Combinados",
-    "card-name-bebidas": "Bebidas", "card-sub-bebidas": "",
-    "ov-title-bebidas": "Bebidas",
-    "ov-subtitle-bebidas": "Bebidas",
-    "card-name-cero": "Cócteles 0'0", "card-sub-cero": "",
-    "ov-title-cero": "Cócteles 0'0",
-    "ov-subtitle-cero": "Cócteles 0'0",
-    "card-name-cafes": "Cafés", "card-sub-cafes": "",
-    "ov-title-cafes": "Cafés",
-    "ov-subtitle-cafes": "Cafés",
   },
   en: {
     sectionLabel: "OUR MENUS",
@@ -665,30 +598,24 @@ const T = {
     "card-name-comida": "", "card-sub-comida": "FOOD MENU",
     "ov-title-comida": "Food",
     "ov-subtitle-comida": "Food",
-    "card-name-spritzgrp": "", "card-sub-spritzgrp": "SPRITZ · SANGRIA · MOJITOS",
-    "ov-title-spritzgrp": "Spritz, Sangria & Mojitos",
-    "ov-subtitle-spritz": "Spritz",
-    "ov-subtitle-cafeteria": "Coffee & Sangria",
-    "ov-subtitle-mojiteria": "Mojito Bar",
+    "card-name-bebidasfrias": "", "card-sub-bebidasfrias": "COLD DRINKS",
+    "ov-title-bebidasfrias": "Cold Drinks",
+    "ov-subtitle-bebidasfrias": "Cold Drinks",
+    "card-name-spritzgrp": "", "card-sub-spritzgrp": "SPRITZ · CAFELERÍA · MOJITOS",
+    "ov-title-spritzgrp": "Spritz, Cafelería & Mojitos",
+    "ov-subtitle-spritzgrp": "Spritz, Cafelería & Sangria, Mojitos",
     "card-name-autorgrp": "", "card-sub-autorgrp": "SIGNATURE · XXL",
     "ov-title-autorgrp": "Signature & XXL Cocktails",
-    "ov-subtitle-autor": "Signature Cocktails",
-    "ov-subtitle-xxl": "XXL Cocktails",
+    "ov-subtitle-autorgrp": "Signature & XXL Cocktails",
     "card-name-tradicionales": "", "card-sub-tradicionales": "CLASSIC COCKTAILS",
     "ov-title-tradicionales": "Classic Cocktails",
     "ov-subtitle-tradicionales": "Classic Cocktails",
+    "card-name-cerogrp": "", "card-sub-cerogrp": "0.0 · HOT DRINKS",
+    "ov-title-cerogrp": "0.0 Cocktails & Hot Drinks",
+    "ov-subtitle-cerogrp": "0.0 Cocktails & Hot Drinks",
     "card-name-combinados": "", "card-sub-combinados": "SPIRITS",
     "ov-title-combinados": "Combinados",
     "ov-subtitle-combinados": "Combinados",
-    "card-name-bebidas": "", "card-sub-bebidas": "DRINKS",
-    "ov-title-bebidas": "Drinks",
-    "ov-subtitle-bebidas": "Drinks",
-    "card-name-cero": "", "card-sub-cero": "ALCOHOL FREE",
-    "ov-title-cero": "0.0 Cocktails",
-    "ov-subtitle-cero": "0.0 Cocktails",
-    "card-name-cafes": "", "card-sub-cafes": "COFFEE",
-    "ov-title-cafes": "Coffee",
-    "ov-subtitle-cafes": "Coffee",
   }
 };
 
@@ -713,16 +640,12 @@ function setLang(lang) {
   // switch images based on language
   const imgs = {
     'comida': lang === 'es' ? 'ComidaEsp.jpg' : 'ComidaIng.jpg',
-    'spritz': lang === 'es' ? 'SpritzEsp.jpg' : 'SpritzIng.jpg',
-    'cafeteria': lang === 'es' ? 'CafeteriaSangriasEsp.jpg' : 'CafeteriaSangriasIng.jpg',
-    'mojiteria': lang === 'es' ? 'MojiteriaEsp.jpg' : 'MojiteriaIng.jpg',
-    'autor': lang === 'es' ? 'CoctelesAutorEsp.jpg' : 'CoctelesAutorIng.jpg',
-    'xxl': lang === 'es' ? 'CoctelesXXLEsp.jpg' : 'CoctelesXXLIng.jpg',
+    'bebidasfrias': lang === 'es' ? 'BebidasFriasEsp.jpg' : 'BebidasFriasIng.jpg',
+    'spritzgrp': lang === 'es' ? 'SpritzCafeleriaMojiteriaEsp.jpg' : 'SpritzCafeleriaMojiteriaIng.jpg',
+    'autorgrp': lang === 'es' ? 'CoctelesAutorXXLEsp.jpg' : 'CoctelesAutorXXLIng.jpg',
     'tradicionales': lang === 'es' ? 'CoctelesTradEsp.jpg' : 'CoctelesTradIng.jpg',
+    'cerogrp': lang === 'es' ? 'Cocteles00CalientesEsp.jpg' : 'Cocteles00CalientesIng.jpg',
     'combinados': lang === 'es' ? 'CombinadosEsp.jpg' : 'CombinadosIng.jpg',
-    'bebidas': lang === 'es' ? 'BebidasEsp.jpg' : 'BebidasIng.jpg',
-    'cero': lang === 'es' ? 'Cocteles00Esp.jpg' : 'Cocteles00Ing.jpg',
-    'cafes': lang === 'es' ? 'CafesEsp.jpg' : 'CafesIng.jpg',
   };
   Object.keys(imgs).forEach(id => {
     const el = document.getElementById('img-' + id);
